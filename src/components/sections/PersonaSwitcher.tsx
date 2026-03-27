@@ -2,11 +2,13 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import ContactAdminModal from "../ContactAdminModal";
 
 type Persona = "owners" | "agents" | "investors";
 
 export default function PersonaSwitcher() {
   const [activeTab, setActiveTab] = useState<Persona>("owners");
+  const [showContactModal, setShowContactModal] = useState(false);
 
   const personas = {
     owners: {
@@ -200,9 +202,6 @@ export default function PersonaSwitcher() {
               >
                 {currentPersona.cta}
               </motion.a>
-              import ContactAdminModal from "../ContactAdminModal"; //
-              ...existing code... const [showContactModal, setShowContactModal]
-              = useState(false);
               <ContactAdminModal
                 open={showContactModal}
                 onClose={() => setShowContactModal(false)}
