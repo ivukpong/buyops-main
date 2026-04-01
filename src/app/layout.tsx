@@ -3,6 +3,7 @@ import { Jost } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import Navigation from "@/components/Navigation";
+import FeedbackWidgetWrapper from "@/components/FeedbackWidgetWrapper";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <Navigation />
           {children}
+          <FeedbackWidgetWrapper />
         </SmoothScrollProvider>
       </body>
     </html>
