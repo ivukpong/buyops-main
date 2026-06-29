@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import logo from "@/media/logo/Buyops Logo.svg";
 
@@ -24,6 +25,10 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const isLegal = ["/terms", "/privacy", "/kyc", "/commission-policy"].some(
+    (p) => pathname?.startsWith(p),
+  );
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -82,7 +87,13 @@ export default function Navigation() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-brand-gray hover:text-brand-blue transition-colors font-secondary"
+                className={`transition-colors font-secondary hover:text-brand-blue ${
+                  isScrolled
+                    ? "text-brand-dark"
+                    : isLegal
+                      ? "text-white"
+                      : "text-brand-gray"
+                }`}
               >
                 {item.label}
               </a>
